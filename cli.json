@@ -4,7 +4,7 @@
   },
   "commands": [
     {
-      "name": "access-revocation",
+      "name": "accessrevocation",
       "aliases": ["ar"],
       "version": "1.0.0",
       "description": "An Akamai CLI package for Access Revokation"
