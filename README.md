@@ -11,7 +11,7 @@ Please ensure your API client has access to the "accessrevocation" API (you may 
 To install, use [Akamai CLI](https://github.com/akamai/cli):
 
 ```
-$akamai install https://github.com/SuhasBharadwaj/cli-accessrevocation.git
+$akamai install https://github.com/suhasAkamai/cli-accessrevocation.git
 ```
 
 You may also use this as a stand-alone command by cloning this repository
