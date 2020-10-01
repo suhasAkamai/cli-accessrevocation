@@ -1,0 +1,127 @@
+#! /usr/bin/env python
+
+""" Copyright 2017 Akamai Technologies, Inc. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+ ************************************************************************
+ *  Access Revocation CLI module by Suhas V Bharadwaj (sbharadw@akamai.com) *
+ ************************************************************************
+
+"""
+# Libraries commmon to python 2 and 3
+from __future__ import print_function
+from outputformat import *
+from endpointdef import *
+import sys
+import os
+import logging
+import random
+import re
+import requests
+import json
+import urllib
+import texttable as tt
+from future import standard_library
+from future.builtins import next
+from future.builtins import object
+from http_calls import EdgeGridHttpCaller
+from akamai.edgegrid import EdgeGridAuth
+from config import EdgeGridConfig
+from subprocess import call
+standard_library.install_aliases()
+
+if sys.version_info[0] >= 3:
+    # python3
+    from urllib.parse import urljoin
+else:
+    pass
+    # python2.7
+    # from urlparse import urljoin
+
+
+def main():
+    """ Processes the right command (list-configs, get-configs, acknowledge-cidrs) """
+    if config.command == "list-tokens":
+        # Get the list of policies in JSON format for the given network
+        if hasattr(config, 'accountSwitchKey'):
+            identifierList = listidentifiers(config.blacklistId, config.accountSwitchKey)
+        else:
+            identifierList = listidentifiers(config.blacklistId)
+        formatOutputIdentifiersList(identifierList, config.output_type)
+
+    elif config.command == "list-blacklist":
+        # Get the list of policies in JSON format for the given network
+        if hasattr(config, 'accountSwitchKey'):
+            blacklistList = listblacklist(config.accountSwitchKey)
+        else:
+            blacklistList = listblacklist()
+        formatOutputBlackList(blacklistList, config.output_type)
+
+    elif config.command == "get-token-details":
+        if hasattr(config, 'accountSwitchKey'):
+            identifierList = getidentifier(
+                config.blacklistId, config.tokenID, config.accountSwitchKey)
+        else:
+            identifierList = getidentifier(config.blacklistId, config.tokenID)
+
+        formatOutputIdentifierList(identifierList, config.output_type)
+
+    elif config.command == "get-configlist":
+        if hasattr(config, 'accountSwitchKey'):
+            arlblacklist = getblack_list_arls(
+                config.blacklistId, config.accountSwitchKey)
+        else:
+            arlblacklist = getblack_list_arls(config.blacklistId)
+        formatOutputConnectorList(arlblacklist, config.output_type)
+
+    elif config.command == "get-token-count":
+        if hasattr(config, 'accountSwitchKey'):
+            blacklist_count = getblack_list_count(
+                config.blacklistId, config.accountSwitchKey)
+        else:
+            blacklist_count = getblack_list_count(config.blacklistId)
+        formatOutputBlackListCount(blacklist_count, config.output_type)
+
+    elif config.command == "revoke-token":
+        f = open(config.file.name, 'r')
+        data = json.load(f)
+        # Very Important since when you read it will be in single quotes, it need to be dumped to json and strings are only valid only in double quotes
+        json_string = json.dumps(data)
+        print(json_string)
+        if hasattr(config, 'accountSwitchKey'):
+            updateResponse = revoke_token(json_string, config.blacklistId, config.accountSwitchKey)
+        else:
+            updateResponse = revoke_token(json_string, config.blacklistId)
+        formatOutputRevocationResp(updateResponse)
+
+    elif config.command == "unrevoke-token":
+        f = open(config.file.name, 'r')
+        data = json.load(f)
+        # Very Important since when you read it will be in single quotes, it need to be dumped to json and strings are only valid only in double quotes
+        json_string = json.dumps(data)
+        print(json_string)
+        if hasattr(config, 'accountSwitchKey'):
+            updateResponse = unrevoke_token(
+                json_string, config.blacklistId, config.accountSwitchKey)
+        else:
+            updateResponse = unrevoke_token(json_string, config.blacklistId)
+        formatOutputUnrevocationResp(updateResponse)
+
+    else:
+        pass
+
+
+if __name__ == "__main__":
+    main()

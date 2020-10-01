@@ -1,0 +1,13 @@
+{
+  "requirements": {
+    "python": "3.0.0"
+  },
+  "commands": [
+    {
+      "name": "access-revokation",
+      "aliases": ["ar"],
+      "version": "1.0.0",
+      "description": "An Akamai CLI package for Access Revokation"
+    }
+  ]
+}
