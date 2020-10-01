@@ -106,19 +106,6 @@ def main():
             updateResponse = revoke_token(json_string, config.blacklistId)
         formatOutputRevocationResp(updateResponse)
 
-    elif config.command == "unrevoke-token":
-        f = open(config.file.name, 'r')
-        data = json.load(f)
-        # Very Important since when you read it will be in single quotes, it need to be dumped to json and strings are only valid only in double quotes
-        json_string = json.dumps(data)
-        print(json_string)
-        if hasattr(config, 'accountSwitchKey'):
-            updateResponse = unrevoke_token(
-                json_string, config.blacklistId, config.accountSwitchKey)
-        else:
-            updateResponse = unrevoke_token(json_string, config.blacklistId)
-        formatOutputUnrevocationResp(updateResponse)
-
     else:
         pass
 
