@@ -11,7 +11,7 @@ Please ensure your API client has access to the "accessrevocation" API (you may 
 To install, use [Akamai CLI](https://github.com/akamai/cli):
 
 ```
-$akamai install https://github.com/suhasAkamai/cli-accessrevocation.git
+$ akamai install https://github.com/suhasAkamai/cli-accessrevocation.git
 ```
 
 You may also use this as a stand-alone command by cloning this repository
@@ -20,7 +20,7 @@ and compiling it yourself.
 ## Usage
 
 ```
-$akamai accessrevocation [global flags] Commands
+$ akamai accessrevocation [global flags] Commands
 ```
 
 ## Global Flags
@@ -46,7 +46,7 @@ $akamai accessrevocation [global flags] Commands
 #### Help
 This displays the usage of accessrevocation Akamai CLI.
 ```
-$akamai ar --help
+$ akamai ar --help
 usage: akamai accessrevocation [-h] [--verbose] [--debug]
                          [--edgerc credentials_file]
                          [--section credentials_file_section]
@@ -101,7 +101,7 @@ optional arguments:
 
 #### List All the blacklist in the account
 ```
-akamai accessrevocation list-blacklist
+$ akamai accessrevocation list-blacklist
 
 +----------------------+----------------------+----------------------+---------------------------+----------------------+
 |         Name         |      ContractId      |          ID          |         createdBy         |     createdTime      |
@@ -114,7 +114,7 @@ akamai accessrevocation list-blacklist
 
 #### List All the blacklist in the Account in Json Format
 ```
-akamai accessrevocation list-blacklist -t json
+$ akamai accessrevocation list-blacklist -t json
 
 [
   {
@@ -201,7 +201,7 @@ optional arguments:
 #### Get token details from  the blacklist
 This shows how to get token or identifier details from the blacklist
 ```
-akamai akamai accessrevocation get-token-details 44 sqatest5
+$ akamai akamai accessrevocation get-token-details 44 sqatest5
 
 +-----------------------------------------------+--------------------------------+
 |                  Identifier                   |              TTL               |
@@ -232,7 +232,7 @@ optional arguments:
 #### Get config list where AR is enabled
 This shows how to get config list where AR is enabled
 ```
-akamai akamai accessrevocation get-configlist 44
+$ akamai accessrevocation get-configlist 44
 +---------------------------+---------------------------+-------------------------------------+
 |           arlId           |        propertyId         |            propertyName             |
 +===========================+===========================+=====================================+
@@ -271,7 +271,7 @@ optional arguments:
 #### Get the count of tokens/identifiers in the blacklist.
 Retrieve the details of a stream.
 ```
-$ akamai akamai accessrevocation get-token-count 44
+$ akamai accessrevocation get-token-count 44
 
 +---------------------------+---------------------------+
 |           Count           |           LIMIT           |
@@ -318,7 +318,7 @@ Sample JSON Input to add 2 tokens
 This command provides details on how to add the token to the blacklist
 ```
 
- akamai accessrevocation revoke-token 44 /Users/sbharadw/Documents/cli-AR/identifier.json
+$ akamai accessrevocation revoke-token 44 /Users/sbharadw/Documents/cli-AR/identifier.json
 
 [{"id": "sdasd345466dg", "durationSeconds": 18000}, {"id": "utrfhasdf8990", "durationSeconds": 3600}]
 {
@@ -362,7 +362,7 @@ Sample JSON Input to remove 3 tokens
 This command provides details on how to remove the token from the blacklist
 ```
 
- akamai accessrevocation unrevoke-token 44 /Users/sbharadw/Documents/cli-AR/identifier.json
+$ akamai accessrevocation unrevoke-token 44 /Users/sbharadw/Documents/cli-AR/identifier.json
 
 ["sdasd345466dg", "utrfhasdf8990"]
 {
