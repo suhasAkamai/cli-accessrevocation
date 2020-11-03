@@ -318,7 +318,7 @@ Sample JSON Input to add 2 tokens
 This command provides details on how to add the token to the blocklist
 ```
 
-$ akamai accessrevocation revoke-token 44 /Users/sbharadw/Documents/cli-AR/identifier.json
+$ akamai accessrevocation revoke-token 44 identifier.json
 
 [{"id": "sdasd345466dg", "durationSeconds": 18000}, {"id": "utrfhasdf8990", "durationSeconds": 3600}]
 {
@@ -362,7 +362,7 @@ Sample JSON Input to remove 3 tokens
 This command provides details on how to remove the token from the blocklist
 ```
 
-$ akamai accessrevocation unrevoke-token 44 /Users/sbharadw/Documents/cli-AR/identifier.json
+$ akamai accessrevocation unrevoke-token 44 identifier.json
 
 ["sdasd345466dg", "utrfhasdf8990"]
 {
