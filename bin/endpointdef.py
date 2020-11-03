@@ -79,38 +79,38 @@ baseurl_prd = '%s://%s/' % ('https', config.host)
 prdHttpCaller = EdgeGridHttpCaller(session, debug, verbose, baseurl_prd)
 
 
-def listblacklist(accountSwitchKey=None):
-    """ List the blacklist in the account """
+def listblocklist(accountSwitchKey=None):
+    """ List the blocklist in the account """
 
-    listBlacklistEndpoint = '/taas/v1/blacklists'
+    listblocklistEndpoint = '/taas/v1/blacklists'
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey}
-        blackListId = prdHttpCaller.getResult(listBlacklistEndpoint, params)
+        blocklistId = prdHttpCaller.getResult(listblocklistEndpoint, params)
     else:
-        blacklistId = prdHttpCaller.getResult(listBlacklistEndpoint)
-    return(blacklistId)
+        blocklistId = prdHttpCaller.getResult(listblocklistEndpoint)
+    return(blocklistId)
 
 
-def listidentifiers(blacklistId, accountSwitchKey=None):
-    """ List the identifiers associated with the blacklist """
+def listidentifiers(blocklistId, accountSwitchKey=None):
+    """ List the identifiers associated with the blocklist """
 
-    listidentifiersEndpoint = '/taas/v1/blacklists/'+str(blacklistId)+'/identifiers'
+    listidentifiersEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/identifiers'
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
-                  'blacklistId': int(blacklistId)}
+                  'blocklistId': int(blocklistId)}
         identifierList = prdHttpCaller.getResult(listidentifiersEndpoint, params)
     else:
         identifierList = prdHttpCaller.getResult(listidentifiersEndpoint)
     return(identifierList)
 
 
-def getidentifier(blacklistId, identifier, accountSwitchKey=None):
+def getidentifier(blocklistId, identifier, accountSwitchKey=None):
     """ Get identifier details """
 
-    getidentifierEndpoint = '/taas/v1/blacklists/'+str(blacklistId)+'/identifiers/'+str(identifier)
+    getidentifierEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/identifiers/'+str(identifier)
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
-                  'blacklistId': int(blacklistId),
+                  'blocklistId': int(blocklistId),
                   'identifier': str(identifier)
                   }
         identifierList = prdHttpCaller.getResult(getidentifierEndpoint, params)
@@ -119,39 +119,39 @@ def getidentifier(blacklistId, identifier, accountSwitchKey=None):
     return(identifierList)
 
 
-def getblack_list_arls(blacklistId, accountSwitchKey=None):
-    """ Get configs associated with blacklist"""
-    getarlblacklistEndpoint = '/taas/v1/blacklists/'+str(blacklistId)+'/properties'
+def getblack_list_arls(blocklistId, accountSwitchKey=None):
+    """ Get configs associated with blocklist"""
+    getarlblocklistEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/properties'
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
-                  'blacklistId': int(blacklistId)
+                  'blocklistId': int(blocklistId)
                   }
-        arlList = prdHttpCaller.getResult(getarlblacklistEndpoint, params)
+        arlList = prdHttpCaller.getResult(getarlblocklistEndpoint, params)
     else:
-        arlList = prdHttpCaller.getResult(getarlblacklistEndpoint)
+        arlList = prdHttpCaller.getResult(getarlblocklistEndpoint)
     return(arlList)
 
 
-def getblack_list_count(blacklistId, accountSwitchKey=None):
-    """ Get configs associated with blacklist"""
-    getcountblacklistEndpoint = '/taas/v1/blacklists/'+str(blacklistId)+'/meta'
+def getblack_list_count(blocklistId, accountSwitchKey=None):
+    """ Get configs associated with blocklist"""
+    getcountblocklistEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/meta'
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
-                  'blacklistId': int(blacklistId)
+                  'blocklistId': int(blocklistId)
                   }
-        blackList_count = prdHttpCaller.getResult(getcountblacklistEndpoint, params)
+        blocklist_count = prdHttpCaller.getResult(getcountblocklistEndpoint, params)
     else:
-        blackList_count = prdHttpCaller.getResult(getcountblacklistEndpoint)
-    return(blackList_count)
+        blocklist_count = prdHttpCaller.getResult(getcountblocklistEndpoint)
+    return(blocklist_count)
 
 
-def revoke_token(data, blacklistId, accountSwitchKey=None):
+def revoke_token(data, blocklistId, accountSwitchKey=None):
     """ revoke Token"""
-    revoketokenEndpoint = '/taas/v1/blacklists/'+str(blacklistId)+'/identifiers/add'
+    revoketokenEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/identifiers/add'
 
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
-                  'blacklistId': int(blacklistId)
+                  'blocklistId': int(blocklistId)
 
                   }
         createResponse = prdHttpCaller.postResult(revoketokenEndpoint, data, params)
@@ -160,13 +160,13 @@ def revoke_token(data, blacklistId, accountSwitchKey=None):
     return(createResponse)
 
 
-def unrevoke_token(data, blacklistId, accountSwitchKey=None):
+def unrevoke_token(data, blocklistId, accountSwitchKey=None):
     """ un-revoke Token"""
-    unrevoketokenEndpoint = '/taas/v1/blacklists/'+str(blacklistId)+'/identifiers/remove'
+    unrevoketokenEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/identifiers/remove'
 
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
-                  'blacklistId': int(blacklistId)
+                  'blocklistId': int(blocklistId)
 
                   }
         createResponse = prdHttpCaller.postResult(unrevoketokenEndpoint, data, params)

@@ -55,11 +55,11 @@ def formatOutputIdentifiersList(identifierList, output_type):
         print(MainParentTable)
 
 
-def formatOutputBlackList(blacklistList, output_type):
+def formatOutputblocklist(blocklistList, output_type):
     """ Formats the output on a given format (json or text) """
     if output_type == "json":
         # Let's print the JSON
-        print(json.dumps(blacklistList, indent=2))
+        print(json.dumps(blocklistList, indent=2))
     if output_type == "text":
         # Iterate over the dictionary and print the selected information
         ParentTable = tt.Texttable()
@@ -68,7 +68,7 @@ def formatOutputBlackList(blacklistList, output_type):
         ParentTable.set_cols_valign(['m', 'm', 'm', 'm', 'm'])
         Parentheader = ['Name', 'ContractId', 'ID', 'createdBy', 'createdTime']
         ParentTable.header(Parentheader)
-        for my_item in blacklistList:
+        for my_item in blocklistList:
             Parentrow = [my_item["name"], my_item["contractId"],
                          my_item["id"], my_item["createdBy"], datetime.datetime.fromtimestamp(my_item["createdTime"]).strftime('%Y-%m-%d %H:%M:%S')]
             ParentTable.add_row(Parentrow)
@@ -95,11 +95,11 @@ def formatOutputIdentifierList(identifierList, output_type):
         print(MainParentTable)
 
 
-def formatOutputBlackListCount(blacklist_count, output_type):
+def formatOutputblocklistCount(blocklist_count, output_type):
     """ Formats the output on a given format (json or text) """
     if output_type == "json":
         # Let's print the JSON
-        print(json.dumps(blacklist_count, indent=2))
+        print(json.dumps(blocklist_count, indent=2))
     if output_type == "text":
         # Iterate over the dictionary and print the selected information
         ParentTable = tt.Texttable()
@@ -108,17 +108,17 @@ def formatOutputBlackListCount(blacklist_count, output_type):
         ParentTable.set_cols_valign(['m', 'm'])
         Parentheader = ['Count', 'LIMIT']
         ParentTable.header(Parentheader)
-        Parentrow = [blacklist_count["count"], blacklist_count["limit"]]
+        Parentrow = [blocklist_count["count"], blocklist_count["limit"]]
         ParentTable.add_row(Parentrow)
         MainParentTable = ParentTable.draw()
         print(MainParentTable)
 
 
-def formatOutputConnectorList(arlblacklist, output_type):
+def formatOutputConnectorList(arlblocklist, output_type):
     """ Formats the output on a given format (json or text) """
     if output_type == "json":
         # Let's print the JSON
-        print(json.dumps(arlblacklist, indent=2))
+        print(json.dumps(arlblocklist, indent=2))
     if output_type == "text":
         # Iterate over the dictionary and print the selected information
         ParentTable = tt.Texttable()
@@ -127,9 +127,10 @@ def formatOutputConnectorList(arlblacklist, output_type):
         ParentTable.set_cols_valign(['m', 'm', 'm'])
         Parentheader = ['arlId', 'propertyId', 'propertyName']
         ParentTable.header(Parentheader)
-        for my_item in arlblacklist:
+        for my_item in arlblocklist:
             Parentrow = [my_item["arlFileId"], my_item["propertyId"],
                          my_item["propertyName"]]
+            ParentTable.set_cols_dtype(["t", "t", "t"])
             ParentTable.add_row(Parentrow)
         MainParentTable = ParentTable.draw()
         print(MainParentTable)

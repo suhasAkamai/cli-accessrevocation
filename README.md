@@ -20,7 +20,7 @@ and compiling it yourself.
 ## Usage
 
 ```
-$ akamai accessrevocation [global flags] Commands
+$ akamai accessrevocation [global flags] Commands OR akamai ar [global flags] Commands
 ```
 
 ## Global Flags
@@ -32,13 +32,13 @@ $ akamai accessrevocation [global flags] Commands
 - `--help`, `-h` — Show help
 
 ## Commands
-- `list-tokens` — List identifiers/tokens in the blacklist
-- `list-blacklist` — List blacklist in the Account
+- `list-tokens` — List identifiers/tokens in the blocklist
+- `list-blocklist` — List blocklist in the Account
 - `get-token-details` — Get identifier/token details
-- `get-configlist` — Get config details associated with blacklist
--  `get-token-count` — Get count of tokens associated with blacklist
--  `revoke-token` — Add the tokens to blacklist
--  `unrevoke-token` — Remove the tokens from the blacklist.
+- `get-configlist` — Get config details associated with blocklist
+-  `get-token-count` — Get count of tokens associated with blocklist
+-  `revoke-token` — Add the tokens to blocklist
+-  `unrevoke-token` — Remove the tokens from the blocklist.
 
 
 ## Examples
@@ -51,21 +51,21 @@ usage: akamai accessrevocation [-h] [--verbose] [--debug]
                          [--edgerc credentials_file]
                          [--section credentials_file_section]
                          [--accountSwitchKey Account Switch Key]
-                         {list-tokens,list-blacklist,get-token-details,get-configlist,get-token-count,revoke-token,unrevoke-token}
+                         {list-tokens,list-blocklist,get-token-details,get-configlist,get-token-count,revoke-token,unrevoke-token}
                          ...
 
 Process command line options.
 
 positional arguments:
-  {list-tokens,list-blacklist,get-token-details,get-configlist,get-token-count,revoke-token,unrevoke-token}
+  {list-tokens,list-blocklist,get-token-details,get-configlist,get-token-count,revoke-token,unrevoke-token}
                         commands
-    list-tokens         List identifiers/tokens in the blacklist
-    list-blacklist      List blacklist in the Account
+    list-tokens         List identifiers/tokens in the blocklist
+    list-blocklist      List blocklist in the Account
     get-token-details   Get identifier/token details
-    get-configlist      Get config details associated with blacklist
-    get-token-count     Get count of tokens associated with blacklist
-    revoke-token        Add the tokens to blacklist
-    unrevoke-token      Remove the tokens from the blacklist.
+    get-configlist      Get config details associated with blocklist
+    get-token-count     Get count of tokens associated with blocklist
+    revoke-token        Add the tokens to blocklist
+    unrevoke-token      Remove the tokens from the blocklist.
 
 
 
@@ -84,14 +84,14 @@ optional arguments:
 
 
 
-#### Usage of list-blacklist Command
-This shows how to use list-blacklist .
+#### Usage of list-blocklist Command
+This shows how to use list-blocklist .
 ```
-$ akamai ar list-blacklist -h
+$ akamai ar list-blocklist -h
           [or]
-$ akamai ar list-blacklist --help
+$ akamai ar list-blocklist --help
 
-usage: akamai accessrevocation list-blacklist [-h] [--output-type json/text]
+usage: akamai accessrevocation list-blocklist [-h] [--output-type json/text]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -99,9 +99,9 @@ optional arguments:
                         Output type {json, text}. Default is text
 ```
 
-#### List All the blacklist in the account
+#### List All the blocklist in the account
 ```
-$ akamai accessrevocation list-blacklist
+$ akamai accessrevocation list-blocklist
 
 +----------------------+----------------------+----------------------+---------------------------+----------------------+
 |         Name         |      ContractId      |          ID          |         createdBy         |     createdTime      |
@@ -112,13 +112,13 @@ $ akamai accessrevocation list-blacklist
 
 ```
 
-#### List All the blacklist in the Account in Json Format
+#### List All the blocklist in the Account in Json Format
 ```
-$ akamai accessrevocation list-blacklist -t json
+$ akamai accessrevocation list-blocklist -t json
 
 [
   {
-    "name": "deliveryonlyblacklist2",
+    "name": "deliveryonlyblocklist2",
     "contractId": "3-195EOUJ",
     "id": 44,
     "createdBy": "or7qdn4ton36bn3v",
@@ -135,10 +135,10 @@ This shows how to use list-tokens .
 $ akamai ar list-tokens -h
           [or]
 $ akamai ar list-tokens --help
-usage: akamai accessrevocation list-tokens [-h] [--output-type json/text] blacklistId
+usage: akamai accessrevocation list-tokens [-h] [--output-type json/text] blocklistId
 
 positional arguments:
-  blacklistId           blacklist from which identifiers need to be retrieve
+  blocklistId           blocklist from which identifiers need to be retrieve
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -147,8 +147,8 @@ optional arguments:
 ```
 
 
-#### List All the list-tokens in the blacklist
-This shows how to list all the tokens or identifiers in the blacklist
+#### List All the list-tokens in the blocklist
+This shows how to list all the tokens or identifiers in the blocklist
 ```
 $ akamai accessrevocation list-tokens 44
 
@@ -162,7 +162,7 @@ $ akamai accessrevocation list-tokens 44
 
 ```
 
-#### List All the list-tokens in the blacklist in Json Format
+#### List All the list-tokens in the blocklist in Json Format
 This shows how to list all the tokens or identifiers in the blacklis in Json Format.
 ```
 $ akamai accessrevocation list-tokens 44 -t json
@@ -186,10 +186,10 @@ This shows how to use get-token-details command.
 $ akamai ar get-token-details -h
           [or]
 $ akamai ar get-token-details --help
-usage: akamai accessrevocation get-token-details [-h] [--output-type json/text] blacklistId tokenID
+usage: akamai accessrevocation get-token-details [-h] [--output-type json/text] blocklistId tokenID
 
 positional arguments:
-  blacklistId           blacklist from which identifiers need to be retrieved
+  blocklistId           blocklist from which identifiers need to be retrieved
   tokenID               identifiers/token details which need to be retrieved
 
 optional arguments:
@@ -198,10 +198,10 @@ optional arguments:
                         Output type {json, text}. Default is text
 ```
 
-#### Get token details from  the blacklist
-This shows how to get token or identifier details from the blacklist
+#### Get token details from  the blocklist
+This shows how to get token or identifier details from the blocklist
 ```
-$ akamai akamai accessrevocation get-token-details 44 sqatest5
+$ akamai accessrevocation get-token-details 44 sqatest5
 
 +-----------------------------------------------+--------------------------------+
 |                  Identifier                   |              TTL               |
@@ -213,15 +213,15 @@ $ akamai akamai accessrevocation get-token-details 44 sqatest5
 
 
 #### Usage of get-configlist Command
-This shows how to use get-configlist command to get the list of configurations associated with the blacklist.
+This shows how to use get-configlist command to get the list of configurations associated with the blocklist.
 ```
 $ akamai ar get-configlist -h
           [or]
 $ akamai ar get-configlist --help
-usage: akamai accessrevocation get-configlist [-h] [--output-type json/text] blacklistId
+usage: akamai accessrevocation get-configlist [-h] [--output-type json/text] blocklistId
 
 positional arguments:
-  blacklistId           blacklist for which associated configs needs to be retrieved
+  blocklistId           blocklist for which associated configs needs to be retrieved
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -236,31 +236,31 @@ $ akamai accessrevocation get-configlist 44
 +---------------------------+---------------------------+-------------------------------------+
 |           arlId           |        propertyId         |            propertyName             |
 +===========================+===========================+=====================================+
-|          581689           |         1.619e+08         |         trproductiontesting         |
+|          581689           |         161874041         |         trproductiontesting         |
 +---------------------------+---------------------------+-------------------------------------+
-|         2.000e+08         |         1.833e+08         |             trtemptest2             |
+|         200030526         |         183344635         |             trtemptest2             |
 +---------------------------+---------------------------+-------------------------------------+
-|          601739           |         1.747e+08         |      cogsperf-amd-allfeatures       |
+|          604205           |         176084367         |         amdsqa-goldenconfig         |
 +---------------------------+---------------------------+-------------------------------------+
-|         2.000e+08         |         1.833e+08         |             trtemptest              |
+|         200050511         |         183843497         |            trmdp3558test            |
 +---------------------------+---------------------------+-------------------------------------+
-|          611925           |         1.801e+08         |       tr-Irdeto.akamaized.net       |
+|          601739           |         174668974         |      cogsperf-amd-allfeatures       |
 +---------------------------+---------------------------+-------------------------------------+
-|          604205           |         1.761e+08         |         amdsqa-goldenconfig         |
+|         200030525         |         183344622         |             trtemptest              |
 +---------------------------+---------------------------+-------------------------------------+
 ```
 
 
 #### Usage of get-token-count Command
-This shows how to use get-token-count command to get the details on number of tokens/ identifiers in the blacklist and current limit
+This shows how to use get-token-count command to get the details on number of tokens/ identifiers in the blocklist and current limit
 ```
 $ akamai ar get-token-count -h
           [or]
 $ akamai ar get-token-count --help
-usage: akamai accessrevocation get-token-count [-h] [--output-type json/text] blacklistId
+usage: akamai accessrevocation get-token-count [-h] [--output-type json/text] blocklistId
 
 positional arguments:
-  blacklistId           blacklist for which count of token needs to be retrieved
+  blocklistId           blocklist for which count of token needs to be retrieved
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -268,7 +268,7 @@ optional arguments:
 
 ```
 
-#### Get the count of tokens/identifiers in the blacklist.
+#### Get the count of tokens/identifiers in the blocklist.
 Retrieve the details of a stream.
 ```
 $ akamai accessrevocation get-token-count 44
@@ -282,16 +282,16 @@ $ akamai accessrevocation get-token-count 44
 ```
 
 #### Usage of Revoke Token Command
-This shows how to use revoke-token command which basically add the token/identifier to blacklist .
+This shows how to use revoke-token command which basically add the token/identifier to blocklist .
 ```
 $ akamai ar revoke-token -h
           [or]
 $ akamai ar arevoke-token --help
 
-usage: akamai accessrevocation revoke-token [-h] blacklistId file
+usage: akamai accessrevocation revoke-token [-h] blocklistId file
 
 positional arguments:
-  blacklistId  blacklist for which token needs to be added for Revocation
+  blocklistId  blocklist for which token needs to be added for Revocation
   file         Json File consiting of token Details
 
 optional arguments:
@@ -314,8 +314,8 @@ Sample JSON Input to add 2 tokens
 ```
 
 
-#### Revoking the Token - Adding the token to blacklist
-This command provides details on how to add the token to the blacklist
+#### Revoking the Token - Adding the token to blocklist
+This command provides details on how to add the token to the blocklist
 ```
 
 $ akamai accessrevocation revoke-token 44 /Users/sbharadw/Documents/cli-AR/identifier.json
@@ -331,16 +331,16 @@ $ akamai accessrevocation revoke-token 44 /Users/sbharadw/Documents/cli-AR/ident
 ```
 
 #### Usage of UnRevoke Token Command
-This shows how to use unrevoke-token command which basically remove the token/identifier to blacklist .
+This shows how to use unrevoke-token command which basically remove the token/identifier to blocklist .
 ```
 $ akamai ar unrevoke-token -h
           [or]
 $ akamai ar unrevoke-token --help
 
-usage: akamai accessrevocation unrevoke-token [-h] blacklistId file
+usage: akamai accessrevocation unrevoke-token [-h] blocklistId file
 
 positional arguments:
-  blacklistId  blacklist from which token needs to be removed
+  blocklistId  blocklist from which token needs to be removed
   file         Json File consiting of token Details
 
 optional arguments:
@@ -358,8 +358,8 @@ Sample JSON Input to remove 3 tokens
 ```
 
 
-#### UnRevoking the Token - Removing the token from the blacklist
-This command provides details on how to remove the token from the blacklist
+#### UnRevoking the Token - Removing the token from the blocklist
+This command provides details on how to remove the token from the blocklist
 ```
 
 $ akamai accessrevocation unrevoke-token 44 /Users/sbharadw/Documents/cli-AR/identifier.json

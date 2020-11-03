@@ -53,15 +53,15 @@ class EdgeGridConfig():
         subparsers = parser.add_subparsers(help='commands', dest="command")
 
         list_identifiers_parser = subparsers.add_parser(
-            "list-tokens", help="List identifiers/tokens in the blacklist")
+            "list-tokens", help="List identifiers/tokens in the blocklist")
         list_identifiers_parser.add_argument('--output-type', '-t', default='text', choices=[
             'json', 'text'], metavar='json/text', help=' Output type {json, text}. Default is text')
         list_identifiers_parser.add_argument(
-            'blacklistId', help="blacklist from which identifiers need to be retrieve", action='store')
+            'blocklistId', help="blocklist from which identifiers need to be retrieve", action='store')
 
-        list_blacklist_parser = subparsers.add_parser(
-            "list-blacklist", help="List blacklist in the Account")
-        list_blacklist_parser.add_argument('--output-type', '-t', default='text', choices=[
+        list_blocklist_parser = subparsers.add_parser(
+            "list-blocklist", help="List blocklist in the Account")
+        list_blocklist_parser.add_argument('--output-type', '-t', default='text', choices=[
             'json', 'text'], metavar='json/text', help=' Output type {json, text}. Default is text')
 
         get_identifier_parser = subparsers.add_parser(
@@ -69,35 +69,35 @@ class EdgeGridConfig():
         get_identifier_parser.add_argument('--output-type', '-t', default='text', choices=[
             'json', 'text'], metavar='json/text', help=' Output type {json, text}. Default is text')
         get_identifier_parser.add_argument(
-            'blacklistId', help="blacklist from which identifiers need to be retrieved", action='store')
+            'blocklistId', help="blocklist from which identifiers need to be retrieved", action='store')
         get_identifier_parser.add_argument(
             'tokenID', help="identifiers/token details which need to be retrieved", action='store')
 
-        get_arlblacklist_parser = subparsers.add_parser(
-            "get-configlist", help="Get config details associated with blacklist")
-        get_arlblacklist_parser.add_argument('--output-type', '-t', default='text', choices=[
+        get_arlblocklist_parser = subparsers.add_parser(
+            "get-configlist", help="Get config details associated with blocklist")
+        get_arlblocklist_parser.add_argument('--output-type', '-t', default='text', choices=[
             'json', 'text'], metavar='json/text', help=' Output type {json, text}. Default is text')
-        get_arlblacklist_parser.add_argument(
-            'blacklistId', help="blacklist for which associated configs needs to be retrieved", action='store')
+        get_arlblocklist_parser.add_argument(
+            'blocklistId', help="blocklist for which associated configs needs to be retrieved", action='store')
 
-        get_arlblacklist_parser = subparsers.add_parser(
-            "get-token-count", help="Get count of tokens associated with blacklist")
-        get_arlblacklist_parser.add_argument('--output-type', '-t', default='text', choices=[
+        get_arlblocklist_parser = subparsers.add_parser(
+            "get-token-count", help="Get count of tokens associated with blocklist")
+        get_arlblocklist_parser.add_argument('--output-type', '-t', default='text', choices=[
             'json', 'text'], metavar='json/text', help=' Output type {json, text}. Default is text')
-        get_arlblacklist_parser.add_argument(
-            'blacklistId', help="blacklist for which count of token needs to be retrieved", action='store')
+        get_arlblocklist_parser.add_argument(
+            'blocklistId', help="blocklist for which count of token needs to be retrieved", action='store')
 
         revoke_token_parser = subparsers.add_parser(
-            "revoke-token", help="Add the tokens to blacklist")
+            "revoke-token", help="Add the tokens to blocklist")
         revoke_token_parser.add_argument(
-            'blacklistId', help="blacklist for which token needs to be added for Revocation", action='store')
+            'blocklistId', help="blocklist for which token needs to be added for Revocation", action='store')
         revoke_token_parser.add_argument(
             'file', help="Json File consiting of token Details", type=argparse.FileType('r'))
 
         unrevoke_token_parser = subparsers.add_parser(
-            "unrevoke-token", help="Remove the tokens from the blacklist.")
+            "unrevoke-token", help="Remove the tokens from the blocklist.")
         unrevoke_token_parser.add_argument(
-            'blacklistId', help="blacklist from which token needs to removed", action='store')
+            'blocklistId', help="blocklist from which token needs to removed", action='store')
         unrevoke_token_parser.add_argument(
             'file', help="Json File consiting of token Details", type=argparse.FileType('r'))
 

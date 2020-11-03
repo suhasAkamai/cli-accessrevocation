@@ -45,10 +45,12 @@ class EdgeGridHttpCaller():
     def getResult(self, endpoint, parameters=None):
         """ Executes a GET API call and returns the JSON output """
         path = endpoint
-        endpoint_result = self.session.get(parse.urljoin(self.baseurl,path), params=parameters)
-        if self.verbose: print (">>>\n" + json.dumps(endpoint_result.json(), indent=2) + "\n<<<\n")
+        endpoint_result = self.session.get(parse.urljoin(self.baseurl, path), params=parameters)
+        if self.verbose:
+            print(">>>\n" + json.dumps(endpoint_result.json(), indent=2) + "\n<<<\n")
         status = endpoint_result.status_code
-        if self.verbose: print( "LOG: GET %s %s %s" % (endpoint,status,endpoint_result.headers["content-type"]))
+        if self.verbose:
+            print("LOG: GET %s %s %s" % (endpoint, status, endpoint_result.headers["content-type"]))
         self.httpErrors(endpoint_result.status_code, path, endpoint_result.json())
         return endpoint_result.json()
 
@@ -103,10 +105,12 @@ class EdgeGridHttpCaller():
         """ Executes a GET API call and returns the JSON output """
         headers = {'content-type': 'application/json'}
         path = endpoint
-        endpoint_result = self.session.post(parse.urljoin(self.baseurl, path), data=body, headers=headers, params=parameters)
+        endpoint_result = self.session.post(parse.urljoin(
+            self.baseurl, path), data=body, headers=headers, params=parameters)
         status = endpoint_result.status_code
         if self.verbose:
-            print("LOG: POST %s %s %s %s %s" % (path, body,parameters, status, endpoint_result.headers["content-type"]))
+            print("LOG: POST %s %s %s %s %s" % (path, body, parameters,
+                                                status, endpoint_result.headers["content-type"]))
         if status == 204:
             return {}
         self.httpErrors(endpoint_result.status_code, path, endpoint_result.json())
@@ -115,13 +119,15 @@ class EdgeGridHttpCaller():
             print(">>>\n" + json.dumps(endpoint_result.json(), indent=2) + "\n<<<\n")
         return endpoint_result.json()
 
-    def postFiles(self, endpoint, file,parameters=None):
+    def postFiles(self, endpoint, file, parameters=None):
         """ Executes a POST API call and returns the JSON output """
         path = endpoint
-        endpoint_result = self.session.post(parse.urljoin(self.baseurl, path), files=file,params=parameters)
+        endpoint_result = self.session.post(parse.urljoin(
+            self.baseurl, path), files=file, params=parameters)
         status = endpoint_result.status_code
         if self.verbose:
-            print("LOG: POST FILES %s %s %s" % (path, status, endpoint_result.headers["content-type"]))
+            print("LOG: POST FILES %s %s %s" %
+                  (path, status, endpoint_result.headers["content-type"]))
         if status == 204:
             return {}
         self.httpErrors(endpoint_result.status_code, path, endpoint_result.json())
@@ -135,7 +141,8 @@ class EdgeGridHttpCaller():
         headers = {'content-type': 'application/json'}
         path = endpoint
 
-        endpoint_result = self.session.put(parse.urljoin(self.baseurl,path), data=body, headers=headers, params=parameters)
+        endpoint_result = self.session.put(parse.urljoin(
+            self.baseurl, path), data=body, headers=headers, params=parameters)
         status = endpoint_result.status_code
         if self.verbose:
             print("LOG: PUT %s %s %s" % (endpoint, status, endpoint_result.headers["content-type"]))
@@ -145,12 +152,14 @@ class EdgeGridHttpCaller():
             print(">>>\n" + json.dumps(endpoint_result.json(), indent=2) + "\n<<<\n")
         return endpoint_result.json()
 
-    def deleteResult(self, endpoint,parameters=None):
+    def deleteResult(self, endpoint, parameters=None):
         """ Executes a DELETE API call and returns the JSON output """
-        endpoint_result = self.session.delete(parse.urljoin(self.baseurl,endpoint),params=parameters)
+        endpoint_result = self.session.delete(
+            parse.urljoin(self.baseurl, endpoint), params=parameters)
         status = endpoint_result.status_code
         if self.verbose:
-            print("LOG: DELETE %s %s %s" % (endpoint, status, endpoint_result.headers["content-type"]))
+            print("LOG: DELETE %s %s %s" %
+                  (endpoint, status, endpoint_result.headers["content-type"]))
         if status == 204:
             return {}
         if self.verbose:
