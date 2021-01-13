@@ -56,12 +56,12 @@ def main():
     if config.command == "list-tokens":
         # Get the list of policies in JSON format for the given network
         if hasattr(config, 'accountSwitchKey'):
-            identifierList = listidentifiers(config.blocklistId, config.accountSwitchKey)
+            identifierList = listidentifiers(config.revocation_listId, config.accountSwitchKey)
         else:
-            identifierList = listidentifiers(config.blocklistId)
+            identifierList = listidentifiers(config.revocation_listId)
         formatOutputIdentifiersList(identifierList, config.output_type)
 
-    elif config.command == "list-blocklist":
+    elif config.command == "get-revocation-lists":
         # Get the list of policies in JSON format for the given network
         if hasattr(config, 'accountSwitchKey'):
             blocklistList = listblocklist(config.accountSwitchKey)
@@ -72,26 +72,26 @@ def main():
     elif config.command == "get-token-details":
         if hasattr(config, 'accountSwitchKey'):
             identifierList = getidentifier(
-                config.blocklistId, config.tokenID, config.accountSwitchKey)
+                config.revocation_listId, config.tokenID, config.accountSwitchKey)
         else:
-            identifierList = getidentifier(config.blocklistId, config.tokenID)
+            identifierList = getidentifier(config.revocation_listId, config.tokenID)
 
         formatOutputIdentifierList(identifierList, config.output_type)
 
     elif config.command == "get-configlist":
         if hasattr(config, 'accountSwitchKey'):
             arlblocklist = getblack_list_arls(
-                config.blocklistId, config.accountSwitchKey)
+                config.revocation_listId, config.accountSwitchKey)
         else:
-            arlblocklist = getblack_list_arls(config.blocklistId)
+            arlblocklist = getblack_list_arls(config.revocation_listId)
         formatOutputConnectorList(arlblocklist, config.output_type)
 
     elif config.command == "get-token-count":
         if hasattr(config, 'accountSwitchKey'):
             blocklist_count = getblack_list_count(
-                config.blocklistId, config.accountSwitchKey)
+                config.revocation_listId, config.accountSwitchKey)
         else:
-            blocklist_count = getblack_list_count(config.blocklistId)
+            blocklist_count = getblack_list_count(config.revocation_listId)
         formatOutputblocklistCount(blocklist_count, config.output_type)
 
     elif config.command == "revoke-token":
@@ -101,9 +101,10 @@ def main():
         json_string = json.dumps(data)
         print(json_string)
         if hasattr(config, 'accountSwitchKey'):
-            updateResponse = revoke_token(json_string, config.blocklistId, config.accountSwitchKey)
+            updateResponse = revoke_token(
+                json_string, config.revocation_listId, config.accountSwitchKey)
         else:
-            updateResponse = revoke_token(json_string, config.blocklistId)
+            updateResponse = revoke_token(json_string, config.revocation_listId)
         formatOutputRevocationResp(updateResponse)
 
     elif config.command == "unrevoke-token":
@@ -114,9 +115,9 @@ def main():
         print(json_string)
         if hasattr(config, 'accountSwitchKey'):
             updateResponse = unrevoke_token(
-                json_string, config.blocklistId, config.accountSwitchKey)
+                json_string, config.revocation_listId, config.accountSwitchKey)
         else:
-            updateResponse = unrevoke_token(json_string, config.blocklistId)
+            updateResponse = unrevoke_token(json_string, config.revocation_listId)
         formatOutputUnrevocationResp(updateResponse)
 
     else:

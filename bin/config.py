@@ -53,15 +53,15 @@ class EdgeGridConfig():
         subparsers = parser.add_subparsers(help='commands', dest="command")
 
         list_identifiers_parser = subparsers.add_parser(
-            "list-tokens", help="List identifiers/tokens in the blocklist")
+            "list-tokens", help="List identifiers/tokens in the revocation list")
         list_identifiers_parser.add_argument('--output-type', '-t', default='text', choices=[
             'json', 'text'], metavar='json/text', help=' Output type {json, text}. Default is text')
         list_identifiers_parser.add_argument(
-            'blocklistId', help="blocklist from which identifiers need to be retrieve", action='store')
+            'revocation_listId', help="revocation list from which identifiers need to be retrieve", action='store')
 
-        list_blocklist_parser = subparsers.add_parser(
-            "list-blocklist", help="List blocklist in the Account")
-        list_blocklist_parser.add_argument('--output-type', '-t', default='text', choices=[
+        list_revocation_list_parser = subparsers.add_parser(
+            "get-revocation-lists", help="List revocation List in the Account")
+        list_revocation_list_parser.add_argument('--output-type', '-t', default='text', choices=[
             'json', 'text'], metavar='json/text', help=' Output type {json, text}. Default is text')
 
         get_identifier_parser = subparsers.add_parser(
@@ -69,35 +69,35 @@ class EdgeGridConfig():
         get_identifier_parser.add_argument('--output-type', '-t', default='text', choices=[
             'json', 'text'], metavar='json/text', help=' Output type {json, text}. Default is text')
         get_identifier_parser.add_argument(
-            'blocklistId', help="blocklist from which identifiers need to be retrieved", action='store')
+            'revocation_listId', help="revocation list from which identifiers need to be retrieved", action='store')
         get_identifier_parser.add_argument(
             'tokenID', help="identifiers/token details which need to be retrieved", action='store')
 
-        get_arlblocklist_parser = subparsers.add_parser(
-            "get-configlist", help="Get config details associated with blocklist")
-        get_arlblocklist_parser.add_argument('--output-type', '-t', default='text', choices=[
+        get_arl_revocation_list_parser = subparsers.add_parser(
+            "get-configlist", help="Get config details associated with revocation list")
+        get_arl_revocation_list_parser.add_argument('--output-type', '-t', default='text', choices=[
             'json', 'text'], metavar='json/text', help=' Output type {json, text}. Default is text')
-        get_arlblocklist_parser.add_argument(
-            'blocklistId', help="blocklist for which associated configs needs to be retrieved", action='store')
+        get_arl_revocation_list_parser.add_argument(
+            'revocation_listId', help="revocation list for which associated configs needs to be retrieved", action='store')
 
-        get_arlblocklist_parser = subparsers.add_parser(
-            "get-token-count", help="Get count of tokens associated with blocklist")
-        get_arlblocklist_parser.add_argument('--output-type', '-t', default='text', choices=[
+        get_revocation_list_count_parser = subparsers.add_parser(
+            "get-token-count", help="Get count of tokens associated with revocation list")
+        get_revocation_list_count_parser.add_argument('--output-type', '-t', default='text', choices=[
             'json', 'text'], metavar='json/text', help=' Output type {json, text}. Default is text')
-        get_arlblocklist_parser.add_argument(
-            'blocklistId', help="blocklist for which count of token needs to be retrieved", action='store')
+        get_revocation_list_count_parser.add_argument(
+            'revocation_listId', help="revocation list for which count of token needs to be retrieved", action='store')
 
         revoke_token_parser = subparsers.add_parser(
-            "revoke-token", help="Add the tokens to blocklist")
+            "revoke-token", help="Add the tokens to revocation list")
         revoke_token_parser.add_argument(
-            'blocklistId', help="blocklist for which token needs to be added for Revocation", action='store')
+            'revocation_listId', help="revocation list for which token needs to be added for Revocation", action='store')
         revoke_token_parser.add_argument(
             'file', help="Json File consiting of token Details", type=argparse.FileType('r'))
 
         unrevoke_token_parser = subparsers.add_parser(
-            "unrevoke-token", help="Remove the tokens from the blocklist.")
+            "unrevoke-token", help="Remove the tokens from the revocation list")
         unrevoke_token_parser.add_argument(
-            'blocklistId', help="blocklist from which token needs to removed", action='store')
+            'revocation_listId', help="revocation list from which token needs to removed", action='store')
         unrevoke_token_parser.add_argument(
             'file', help="Json File consiting of token Details", type=argparse.FileType('r'))
 

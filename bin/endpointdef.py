@@ -82,7 +82,7 @@ prdHttpCaller = EdgeGridHttpCaller(session, debug, verbose, baseurl_prd)
 def listblocklist(accountSwitchKey=None):
     """ List the blocklist in the account """
 
-    listblocklistEndpoint = '/taas/v1/blacklists'
+    listblocklistEndpoint = '/taas/v2/revocation-lists'
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey}
         blocklistId = prdHttpCaller.getResult(listblocklistEndpoint, params)
@@ -94,7 +94,7 @@ def listblocklist(accountSwitchKey=None):
 def listidentifiers(blocklistId, accountSwitchKey=None):
     """ List the identifiers associated with the blocklist """
 
-    listidentifiersEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/identifiers'
+    listidentifiersEndpoint = '/taas/v2/revocation-lists/'+str(blocklistId)+'/identifiers'
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
                   'blocklistId': int(blocklistId)}
@@ -121,7 +121,7 @@ def getidentifier(blocklistId, identifier, accountSwitchKey=None):
 
 def getblack_list_arls(blocklistId, accountSwitchKey=None):
     """ Get configs associated with blocklist"""
-    getarlblocklistEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/properties'
+    getarlblocklistEndpoint = '/taas/v2/revocation-lists/'+str(blocklistId)+'/properties'
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
                   'blocklistId': int(blocklistId)
@@ -134,7 +134,7 @@ def getblack_list_arls(blocklistId, accountSwitchKey=None):
 
 def getblack_list_count(blocklistId, accountSwitchKey=None):
     """ Get configs associated with blocklist"""
-    getcountblocklistEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/meta'
+    getcountblocklistEndpoint = '/taas/v2/revocation-lists/'+str(blocklistId)+'/meta'
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
                   'blocklistId': int(blocklistId)
@@ -147,7 +147,7 @@ def getblack_list_count(blocklistId, accountSwitchKey=None):
 
 def revoke_token(data, blocklistId, accountSwitchKey=None):
     """ revoke Token"""
-    revoketokenEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/identifiers/add'
+    revoketokenEndpoint = ' /taas/v2/revocation-lists/'+str(blocklistId)+'/identifiers/add'
 
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
@@ -162,7 +162,7 @@ def revoke_token(data, blocklistId, accountSwitchKey=None):
 
 def unrevoke_token(data, blocklistId, accountSwitchKey=None):
     """ un-revoke Token"""
-    unrevoketokenEndpoint = '/taas/v1/blacklists/'+str(blocklistId)+'/identifiers/remove'
+    unrevoketokenEndpoint = '/taas/v2/revocation-lists/'+str(blocklistId)+'/identifiers/remove'
 
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
