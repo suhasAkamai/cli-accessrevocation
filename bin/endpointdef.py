@@ -147,7 +147,7 @@ def getblack_list_count(blocklistId, accountSwitchKey=None):
 
 def revoke_token(data, blocklistId, accountSwitchKey=None):
     """ revoke Token"""
-    revoketokenEndpoint = ' /taas/v2/revocation-lists/'+str(blocklistId)+'/identifiers/add'
+    revoketokenEndpoint = '/taas/v2/revocation-lists/'+str(blocklistId)+'/identifiers/add'
 
     if accountSwitchKey:
         params = {'accountSwitchKey': accountSwitchKey,
